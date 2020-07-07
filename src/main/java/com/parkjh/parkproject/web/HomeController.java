@@ -15,10 +15,6 @@ public class HomeController {
 
     @GetMapping("/homeDto")
     public HomeResponseDto homeDto(@RequestParam("name") String name, @RequestParam("amount") int amount) {
-
-        System.out.println("name = " + name);
-        System.out.println("amount = " + amount);
-
         return new HomeResponseDto(name, amount);
     }
 }
