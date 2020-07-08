@@ -21,12 +21,19 @@ public class Posts {
     @Column(columnDefinition = "TEXT", nullable = false)
     private String content;
 
-    private String auther;
+    private String author;
 
     @Builder
-    public Posts(String title, String content, String auther) {
+    public Posts(String title, String content, String author) {
+
         this.title = title;
         this.content = content;
-        this.auther = auther;
+        this.author = author;
+    }
+
+    public void update(String title, String content) {
+
+        this.title = title;
+        this.content = content;
     }
 }

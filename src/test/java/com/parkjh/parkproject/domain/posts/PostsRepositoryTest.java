@@ -31,7 +31,7 @@ public class PostsRepositoryTest {
         postsRepository.save(Posts.builder()
                 .title(title)
                 .content(content)
-                .auther("test@gmail.com")
+                .author("test@gmail.com")
                 .build());
 
         List<Posts> postsList = postsRepository.findAll();
