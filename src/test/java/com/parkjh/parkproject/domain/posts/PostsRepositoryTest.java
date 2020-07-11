@@ -18,10 +18,10 @@ public class PostsRepositoryTest {
     @Autowired
     PostsRepository postsRepository;
 
-    @After
+    /* @After
     public void cleanUp() {
         postsRepository.deleteAll();
-    }
+    } */
 
     @Test
     public void getBoardSave() {
