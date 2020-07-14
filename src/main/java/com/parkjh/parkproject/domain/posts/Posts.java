@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Getter
 @NoArgsConstructor
@@ -23,17 +24,27 @@ public class Posts {
 
     private String author;
 
+    @Column(nullable = false)
+    private LocalDateTime regDate;
+
+    private LocalDateTime updDate;
+
+    @Column(nullable = false, columnDefinition = " varchar(1) default 'N'")
+    private char delYn;
+
     @Builder
-    public Posts(String title, String content, String author) {
+    public Posts(String title, String content, String author, LocalDateTime regDate) {
 
         this.title = title;
         this.content = content;
         this.author = author;
+        this.regDate = regDate;
     }
 
-    public void update(String title, String content) {
+    public void update(String title, String content, LocalDateTime updDate) {
 
         this.title = title;
         this.content = content;
+        this.updDate = updDate;
     }
 }

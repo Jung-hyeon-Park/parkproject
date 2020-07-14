@@ -4,6 +4,7 @@ import com.parkjh.parkproject.domain.posts.Posts;
 import com.parkjh.parkproject.domain.posts.PostsRepository;
 import com.parkjh.parkproject.web.dto.posts.PostsSaveRequestDto;
 import com.parkjh.parkproject.web.dto.posts.PostsUpdateRequestDto;
+import org.apache.tomcat.jni.Local;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,11 +17,8 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -52,7 +50,8 @@ public class PostsApiControllerTest {
         PostsSaveRequestDto requestDto = PostsSaveRequestDto.builder()
                 .title(title)
                 .content(content)
-                .author("test@gmail.com")
+                .author("testInsert@gmail.com")
+                .regDate(LocalDateTime.now())
                 .build();
 
         String url = "http://localhost:" + port + "/api/v1/posts";
@@ -74,7 +73,8 @@ public class PostsApiControllerTest {
         Posts savedPosts = postsRepository.save(Posts.builder()
                 .title("테스트 게시판 제목")
                 .content("테스트 게시판 본문")
-                .author("test@gmail.com")
+                .author("testUpdate@gmail.com")
+                .regDate(LocalDateTime.now())
                 .build());
 
         Long updateId = savedPosts.getId();
@@ -84,6 +84,7 @@ public class PostsApiControllerTest {
         PostsUpdateRequestDto requestDto = PostsUpdateRequestDto.builder()
                 .title(expectedTitle)
                 .content(expectedContent)
+                .updDate(LocalDateTime.now())
                 .build();
 
         String url = "http://localhost:" + port + "/api/v1/posts/" + updateId;

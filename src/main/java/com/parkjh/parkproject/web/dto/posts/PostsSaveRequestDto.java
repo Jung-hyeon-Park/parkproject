@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Getter
 @NoArgsConstructor
 public class PostsSaveRequestDto {
@@ -12,13 +14,15 @@ public class PostsSaveRequestDto {
     private String title;
     private String content;
     private String author;
+    private LocalDateTime regDate;
 
     @Builder
-    public PostsSaveRequestDto(String title, String content, String author) {
+    public PostsSaveRequestDto(String title, String content, String author, LocalDateTime regDate) {
 
         this.title = title;
         this.content = content;
         this.author = author;
+        this.regDate = regDate;
     }
 
     public Posts toEntity() {
@@ -26,6 +30,7 @@ public class PostsSaveRequestDto {
                 .title(title)
                 .content(content)
                 .author(author)
+                .regDate(regDate)
                 .build();
     }
 }
